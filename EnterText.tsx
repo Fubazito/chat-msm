@@ -1,5 +1,7 @@
 import React, { ChangeEvent, Component } from 'react';
 
+import { appSocket } from './appSocket';
+
 interface State {
   mensagem: String;
 }
@@ -18,6 +20,11 @@ export class EnterText extends Component<{}, State> {
 
   handleClick = () => {
     console.log('Botão funciona!');
+
+    appSocket.emit('nova-mensagem', {
+      nome: 'Felipe',
+      mensagem: this.state.mensagem,
+    });
 
     this.setState({
       mensagem: '',
